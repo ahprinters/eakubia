@@ -149,26 +149,65 @@ class AdmissionFormWizard extends Component
               }
               // next step
               
+
+
 public function downloadPdf()
 {
+    // সব ফিল্ডকে একটি অ্যারেতে সাজানো হচ্ছে
     $data = [
         'student' => [
+            'photo' => $this->user_photo ?? null,
             'name_en' => $this->name_en,
             'name_bn' => $this->name_bn,
             'date_of_birth' => $this->date_of_birth,
+            'religion' => $this->religion,
+            'gender' => $this->gender,
+            'blood_group' => $this->blood_group,
+
             'father_name_en' => $this->father_name_en,
+            'father_mobile' => $this->father_mobile,
             'mother_name_en' => $this->mother_name_en,
-            // অন্যান্য ফিল্ড এখানে যোগ করো
+            'mother_mobile' => $this->mother_mobile,
+            'annual_income' => $this->annual_income,
+            'land_area' => $this->land_area,
+
+            'selectedCategories' => $this->selectedCategories,
+
+            'prev_inst_name' => $this->prev_inst_name,
+            'prev_class' => $this->prev_class,
+            'pass_year' => $this->pass_year,
+            'gpa' => $this->gpa,
+            'release_no' => $this->release_no,
+            'releas_date' => $this->releas_date,
+
+            'student_signature' => $this->student_signature,
+            'guardian_signature' => $this->guardian_signature,
+
+            'downloaded_form' => $this->downloaded_form,
+
+            'admission_fee' => $this->admission_fee,
+            'session_fee' => $this->session_fee,
+            'total_fee' => $this->total_fee,
+            'teacher_certified' => $this->teacher_certified,
+            'principal_comment' => $this->principal_comment,
+
+            'nid' => $this->nid,
+            'release_certificate' => $this->release_certificate,
+            'jdc_marksheet' => $this->jdc_marksheet,
+            'dakhil_marksheet' => $this->dakhil_marksheet,
+            'alim_marksheet' => $this->alim_marksheet,
+            'other_documents' => $this->other_documents,
         ]
     ];
 
-            $pdf = Pdf::loadView('pdf.admission-form', $data)
-                    ->setPaper('legal', 'portrait'); // লিগাল সাইজ কাগজ
+    // PDF তৈরি করা হচ্ছে
+    $pdf = Pdf::loadView('pdf.admission-form', $data)
+              ->setPaper('legal', 'portrait');
 
-            return response()->streamDownload(function () use ($pdf) {
-                echo $pdf->output();
-            }, 'admission-form.pdf');
-        }
+    return response()->streamDownload(function () use ($pdf) {
+        echo $pdf->output();
+    }, 'admission-form.pdf');
+}
         public function render()
     {
         return view('livewire.admission-form-wizard');
