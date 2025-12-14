@@ -3,6 +3,7 @@ namespace App\Livewire;
 
 use App\Models\Student;
 use Livewire\Component;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdmissionFormWizard extends Component
 {
@@ -148,7 +149,26 @@ class AdmissionFormWizard extends Component
               }
               // next step
               
-    
+public function downloadPdf()
+{
+    $data = [
+        'student' => [
+            'name_en' => $this->name_en,
+            'name_bn' => $this->name_bn,
+            'date_of_birth' => $this->date_of_birth,
+            'father_name_en' => $this->father_name_en,
+            'mother_name_en' => $this->mother_name_en,
+            // অন্যান্য ফিল্ড এখানে যোগ করো
+        ]
+    ];
+
+            $pdf = Pdf::loadView('pdf.admission-form', $data)
+                    ->setPaper('legal', 'portrait'); // লিগাল সাইজ কাগজ
+
+            return response()->streamDownload(function () use ($pdf) {
+                echo $pdf->output();
+            }, 'admission-form.pdf');
+        }
         public function render()
     {
         return view('livewire.admission-form-wizard');
