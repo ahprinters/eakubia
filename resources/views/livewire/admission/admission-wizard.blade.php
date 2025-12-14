@@ -34,7 +34,7 @@
             @elseif ('$currentStep == 6')
                 @include('livewire.admission.steps.step-6-pdf')
             @elseif ('$currentStep == 7')
-                @include(livewire.admission.steps.step-7-office)
+               @include('livewire.admission.steps.step-7-pdf')
             @elseif ($currentStep == 8)
                 @include('livewire.admission.steps.step-8-documents')
             @endif                 
