@@ -1,0 +1,15 @@
+কাজের ধাপ: 
+    - এড্রেস এর জন্য ট্যাবেল এবং মডেল তৈরি করা
+        - ডিভিশন টেবিল ও মডেল 
+                -php artisan make:model Division -m
+        -ডিস্ট্রিক্ট টেবিল ও মডেল 
+                -php artisan make:model District -m
+        - উপজেলা টেবিল ও মডেল 
+                -php artisan make:model Upazila -m
+        -ইউনিয়ন টেবিল ও মডেল 
+                -php artisan make:model Union -m
+        -ওয়ার্ড মডেল ও টেবিল
+                -php artisan make:model Ward -m 
+        -কাস্টম এড্রেস টেবিল ও মডেল তৈরি করা 
+                -php artisan make:model CustomAddress -m
+                    -Schema::create('addresses', function(Blueprint $table))

@@ -1,0 +1,36 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('guardians', function (Blueprint $table) {
+            $table->id();
+             $table->string('name');
+             $table->string('relationship')->nullable();
+             $table->string('phone')->nullable();
+             $table->string('occupation')->nullable();
+             $table->string('yearly_income')->nullable();
+             $table->string('quantity_land')->nullable();
+             $table-> string('family_member_count')->nullable();
+             $table->string('permanent_address')->nullable();
+             $table->string('current_address')->nullable();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('guardians');
+    }
+};
