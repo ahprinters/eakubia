@@ -5,12 +5,12 @@
         {{-- Progress Bar --}}
         <div class="mb-8">
             <div class="flex justify-between items-center text-sm font-medium">
-                @php $totalSteps = 8; @endphp
+                @php $totalSteps = 8; @end php
                 @for ($i=1; $i<=$totalSteps; $i++)
                 <span class = "{{ $currentStep>=$i? 'text-indigo-600 font-bold': 'text-gray-400' }}">
                     Step{{ $i }}
                 </span>
-                @endfor                
+                @end for                
             </div>
             <div class = "w-full bg-gray-200 rounded-full h-2.5 mt-2">
                 <div class = "bg-indigo-600 h-2.5 rounded-full" style="width:{{ ($currentStep/$totalSteps)*100 }}%">
@@ -24,7 +24,7 @@
             @if($currentStep==1)
                 @include('livewire.admission.steps.step-1-personal')
             @elseif ($currentStep == 2)
-                @include('livewire.admission.steps.spep-2-parent')
+                @include('livewire.admission.steps.step-2-parent')
             @elseif ($currentStep == 3)
                 @include('livewire.admission.steps.step-3-quota')
             @elseif ('$currentStep == 4')
@@ -42,11 +42,21 @@
             {{-- navigation button --}}
             <div class=" mt-10 flex justify-between border-1 pt-5">
                 @if($currentStep ==1)
-                <button
+                <button type= "button" wire:click="previousStep" class = "px-6 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
+                    &larr;previous
+                </button>
+                @else
+                <div></div>
+                @endif
 
+
+                <button type= "submit" class = "px-6 py-2 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 disabled: opacity-50"
+                   @if($currentStep <8) 
+                   Nex Step &rarr;
+                   @else
+                   Submit Application
+                   @endif
+                </button>
             </div>
         </form>
    </div>
-
-    {{-- The best athlete wants his opponent at his best. --}}
-</div>
